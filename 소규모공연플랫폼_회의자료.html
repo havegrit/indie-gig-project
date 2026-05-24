@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소규모 공연 통합 플랫폼 — 회의 자료</title>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --border: #e5e7eb;
+    --hl: #fef3c7;
+    --good: #059669;
+    --warn: #dc2626;
+    --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+  }
+  header.hero {
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  header.hero .tag {
+    display: inline-block;
+    background: var(--text);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  header.hero h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+  header.hero .meta {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  nav.toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 48px;
+    box-shadow: var(--shadow);
+  }
+  nav.toc h2 {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  nav.toc ol {
+    margin: 0;
+    padding-left: 20px;
+    columns: 2;
+    column-gap: 32px;
+  }
+  nav.toc li {
+    margin-bottom: 6px;
+    break-inside: avoid;
+  }
+  nav.toc a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  nav.toc a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  section {
+    margin-bottom: 56px;
+  }
+  section > h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.01em;
+  }
+  section > h2 .num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 28px 0 12px;
+    color: var(--text);
+  }
+  section h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 20px 0 8px;
+    color: var(--muted);
+  }
+  p { margin: 8px 0 12px; }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 4px; }
+  strong { color: var(--text); font-weight: 700; }
+  em { color: var(--muted); font-style: normal; }
+  code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+  }
+  a { color: var(--accent); }
+  .callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+  }
+  .callout.warn {
+    background: #fef2f2;
+    border-left-color: var(--warn);
+  }
+  .callout.good {
+    background: #ecfdf5;
+    border-left-color: var(--good);
+  }
+  .callout strong:first-child { display: inline-block; margin-right: 6px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th {
+    background: #f9fafb;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+  .stars { color: #f59e0b; letter-spacing: 1px; }
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pill.p0 { background: #fee2e2; color: #991b1b; }
+  .pill.p1 { background: #fef3c7; color: #92400e; }
+  .pill.p2 { background: #dbeafe; color: #1e40af; }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .card h4 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 15px;
+  }
+  .quote {
+    border-left: 3px solid var(--muted);
+    padding: 6px 16px;
+    margin: 12px 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .highlight { background: var(--hl); padding: 1px 4px; border-radius: 2px; }
+  .source-list {
+    font-size: 13px;
+    color: var(--muted);
+    columns: 2;
+    column-gap: 24px;
+  }
+  .source-list li { break-inside: avoid; margin-bottom: 4px; }
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .kpi {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .kpi .num {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+    line-height: 1.2;
+  }
+  .kpi .label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+  }
+  @media (max-width: 720px) {
+    .wrapper { padding: 24px 16px 60px; }
+    header.hero h1 { font-size: 26px; }
+    nav.toc ol { columns: 1; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .kpi-row { grid-template-columns: 1fr; }
+    .source-list { columns: 1; }
+    table { font-size: 13px; }
+    th, td { padding: 8px 10px; }
+  }
+
+  /* ===== Edit Mode UI ===== */
+  .edit-toolbar {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    display: flex;
+    gap: 8px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    border: 1px solid var(--border);
+  }
+  .edit-toolbar button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .edit-toolbar button:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+  }
+  .edit-toolbar button.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .edit-toolbar button.primary:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+  .edit-toolbar button.danger {
+    color: var(--warn);
+    border-color: #fecaca;
+  }
+  .edit-toolbar button.danger:hover {
+    background: #fef2f2;
+  }
+  .edit-toolbar .status {
+    font-size: 12px;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  body.edit-mode [contenteditable="true"] {
+    outline: 1px dashed transparent;
+    transition: outline-color 0.15s, background-color 0.15s;
+    border-radius: 3px;
+  }
+  body.edit-mode [contenteditable="true"]:hover {
+    outline-color: var(--accent);
+    background: rgba(37, 99, 235, 0.03);
+  }
+  body.edit-mode [contenteditable="true"]:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    background: rgba(37, 99, 235, 0.05);
+  }
+  body.edit-mode::before {
+    content: "편집 모드";
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 999;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    background: var(--text);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transition: transform 0.25s ease;
+    z-index: 1001;
+    pointer-events: none;
+  }
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media print {
+    .edit-toolbar, .toast { display: none !important; }
+    body.edit-mode::before { display: none !important; }
+  }
+  @media (max-width: 720px) {
+    .edit-toolbar { top: 8px; right: 8px; padding: 6px; }
+    .edit-toolbar button { font-size: 12px; padding: 6px 10px; }
+    .edit-toolbar .status { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="edit-toolbar" id="editToolbar">
+  <button id="btnToggleEdit" type="button">✏️ 편집 모드</button>
+  <span class="status" id="saveStatus"></span>
+  <button id="btnDownload" type="button" class="primary">💾 HTML 다운로드</button>
+  <button id="btnReset" type="button" class="danger" title="저장된 편집 내용을 모두 지우고 원본으로 되돌립니다">↺ 초기화</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="wrapper">
+
+<header class="hero">
+  <span class="tag">MEETING BRIEF</span>
+  <h1>소규모 공연 통합 플랫폼</h1>
+  <div class="meta">아이디어 회의 자료 · 2026-05-24</div>
+</header>
+
+<nav class="toc">
+  <h2>목차</h2>
+  <ol>
+    <li><a href="#s1">핵심 가치</a></li>
+    <li><a href="#s2">해결할 문제</a></li>
+    <li><a href="#s3">핵심 기능 (AI 활용)</a></li>
+    <li><a href="#s4">주요 고객층</a></li>
+    <li><a href="#s5">관련 사회 문제</a></li>
+    <li><a href="#s6">유사 서비스 벤치마킹</a></li>
+    <li><a href="#s7">정책 및 정부지원</a></li>
+    <li><a href="#s8">종합 권고</a></li>
+    <li><a href="#sources">주요 출처</a></li>
+  </ol>
+</nav>
+
+<div class="callout">
+  <strong>핵심 메시지</strong> 전체 공연 관람률은 4년 연속 상승해 63%에 달하지만, 인디 라이브 관람은 27.5%에서 15.4%로 절반 가까이 감소했다.
+  수요는 있는데 매칭이 안 되는 <strong>디스커버리 문제</strong>가 핵심이다.
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><span class="num">15.4%</span><div class="label">2024 인디 라이브 관람률 (2022년 27.5%)</div></div>
+  <div class="kpi"><span class="num">3,168팀</span><div class="label">국내 인디 뮤지션 (서울 88.6%)</div></div>
+  <div class="kpi"><span class="num">901만원</span><div class="label">음악 분야 예술인 평균 연소득</div></div>
+</div>
+
+<!-- ========== 1. 핵심 가치 ========== -->
+<section id="s1">
+  <h2><span class="num">1</span>핵심 가치</h2>
+
+  <div class="callout good">
+    <strong>권장 한 줄</strong> "흩어진 인디 공연을 한 곳에서 발견하고 놓치지 않게 한다."
+  </div>
+
+  <h3>가치 분해 — 3개 축</h3>
+  <ul>
+    <li><strong>발견(Discovery)</strong> — 인스타·트위터·커뮤니티에 흩어진 정보를 구조화해 검색·필터링 가능하게.</li>
+    <li><strong>알림(Notification)</strong> — 티켓 오픈·관심 아티스트 공연을 놓치지 않게 푸시.</li>
+    <li><strong>큐레이션(Curation)</strong> — 단순 어그리게이션이 아닌 권위 있는 픽 (RA Picks 모델).</li>
+  </ul>
+
+  <h3>근거 (수치)</h3>
+  <table>
+    <thead><tr><th>지표</th><th>수치</th><th>출처</th></tr></thead>
+    <tbody>
+      <tr><td>인디 라이브 관람률 추이</td><td>27.5% → <strong>15.4%</strong> (2022→2024)</td><td>KOCCA 2024 음악 이용자 조사</td></tr>
+      <tr><td>전체 공연 관람률</td><td>63.0% (4년 연속 상승)</td><td>문체부 2024 국민문화예술활동조사</td></tr>
+      <tr><td>인디 뮤지션 규모</td><td>3,168팀 / 7,545명 (서울 88.6%)</td><td>음레협 2024 조사</td></tr>
+      <tr><td>등용문 동시 종료</td><td>네이버 OnStage(2023), EBS 헬로루키(2023)</td><td>관련 보도</td></tr>
+      <tr><td>인디스트릿 누적 데이터</td><td>6,100 아티스트 / 16,800 공연</td><td>indistreet.com</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== 2. 해결할 문제 ========== -->
+<section id="s2">
+  <h2><span class="num">2</span>해결할 수 있는 문제</h2>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>👥 팬 측 문제</h4>
+      <ul>
+        <li>공연 정보가 인스타·트위터·커뮤니티에 흩어져 다채널 모니터링 필요</li>
+        <li>예매처가 인터파크·멜론·예스24·티켓링크로 분산 → 티켓 오픈 추적 어려움</li>
+        <li>스크린샷·사진첩으로 우회 관리하는 비효율</li>
+        <li>좋아하는 아티스트의 신규 공연을 놓침</li>
+        <li>"이번 주말 홍대 공연 뭐 있지?" 자연어 탐색 불가</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>🎤 공급자 측 문제 (밴드·공연장)</h4>
+      <ul>
+        <li>평균 연소득 901만원(국민 평균의 41%) — 도달이 곧 생계</li>
+        <li>홍대 라이브클럽 70%+ 폐업·휴업 (2021 기준)</li>
+        <li>임대료 월 500만~2,000만원, 일반음식점 등록으로 지원 사각</li>
+        <li>신인 등용 채널 부재 — 대학축제·방송은 대형 기획사 독점</li>
+        <li>인스타·틱톡 알고리즘에 전적으로 의존한 자체 홍보</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>시장 구조적 문제</h3>
+  <ul>
+    <li>KOPIS는 정식 등록 공연장 위주 → <span class="highlight">일반음식점 등록 라이브클럽 다수 누락</span></li>
+    <li>대형 예매처는 인디 카테고리에 무관심</li>
+    <li>K-팝과 인디 양극화 심화</li>
+  </ul>
+</section>
+
+<!-- ========== 3. 핵심 기능 ========== -->
+<section id="s3">
+  <h2><span class="num">3</span>핵심 기능 (AI 기술 활용 포함)</h2>
+
+  <h3><span class="pill p0">P0</span> MVP 단계 (3~6개월)</h3>
+  <table>
+    <thead><tr><th>기능</th><th>AI 활용</th><th>난이도</th><th>효과</th></tr></thead>
+    <tbody>
+      <tr><td>아티스트·공연장 팔로우 + 푸시 알림</td><td>—</td><td>하</td><td><span class="stars">★★★</span></td></tr>
+      <tr><td><strong>포스터 OCR + LLM 정보 추출</strong></td><td>GPT-4o / Claude Vision + Naver Clova OCR</td><td>중</td><td><span class="stars">★★★</span></td></tr>
+      <tr><td>Spotify / Apple Music 연동 온보딩 (콜드스타트 해결)</td><td>스트리밍 청취 데이터 기반 시드</td><td>중</td><td><span class="stars">★★★</span></td></tr>
+      <tr><td>캘린더 연동 (Google / Apple)</td><td>—</td><td>하</td><td><span class="stars">★★</span></td></tr>
+      <tr><td>티켓 오픈 다단계 알림 (D-7 → 5분 전)</td><td>—</td><td>중</td><td><span class="stars">★★★</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3><span class="pill p1">P1</span> 성장 단계 (6~18개월)</h3>
+  <table>
+    <thead><tr><th>기능</th><th>AI 활용</th><th>효과</th></tr></thead>
+    <tbody>
+      <tr><td>하이브리드 추천 (CF + 콘텐츠 기반 + 임베딩)</td><td>GNN 기반 "비슷한 아티스트", Semantic IDs</td><td><span class="stars">★★★</span></td></tr>
+      <tr><td>위치 기반 알림 (Geofencing)</td><td>—</td><td><span class="stars">★★</span></td></tr>
+      <tr><td>UGC 제보 시스템 + AI 모더레이션</td><td>LLM 필터 + 중복 임베딩 클러스터링</td><td><span class="stars">★★</span></td></tr>
+      <tr><td>한국어 NER로 캡션·게시글 자동 파싱</td><td>KLUE-BERT 파인튜닝 + 도메인 사전</td><td><span class="stars">★★</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3><span class="pill p2">P2</span> 차별화 단계</h3>
+  <ul>
+    <li><strong>RAG 챗봇</strong> — "이번 주말 홍대 공연 추천해줘" 자연어 검색 (Claude/GPT + Vector DB)</li>
+    <li><strong>에디터 큐레이션</strong> (RA Picks 모델) — 인간 + AI 하이브리드</li>
+    <li><strong>Dice 스타일 Groups</strong> — 친구와 공동 구매·투표</li>
+    <li><strong>세트리스트·공연 후기 DB</strong> (LiveFans 모델) — 사후 트래픽 확보</li>
+  </ul>
+
+  <h3>데이터 수집 전략 (법적 안전)</h3>
+  <ol>
+    <li><strong>공연장·기획사 파트너십</strong> → 직접 등록 포털 (B2B SaaS)</li>
+    <li><strong>KOPIS OpenAPI</strong> (무료 인증키, 즉시 활용)</li>
+    <li><strong>Instagram Graph API</strong> (해시태그 7일 30개 한도) — 직접 크롤링은 법적 리스크 매우 큼</li>
+    <li><strong>UGC 제보 + AI 검증</strong> (Bandsintown 모델)</li>
+  </ol>
+
+  <div class="callout warn">
+    <strong>⚠️ 주의</strong> 인스타그램 무단 스크래핑은 Meta 약관 위반, 계정 정지·법적 분쟁 리스크 매우 큼. 공식 API + 파트너십 + UGC 경로 권장.
+  </div>
+</section>
+
+<!-- ========== 4. 주요 고객층 ========== -->
+<section id="s4">
+  <h2><span class="num">4</span>주요 고객층</h2>
+
+  <div class="callout warn">
+    <strong>논의 전제</strong> "인디 공연 팬"은 너무 넓다. 안에 사실상 <strong>세 명의 다른 사람</strong>이 있고, 각 페르소나는 <em>다른 제품</em>을 필요로 한다. 세 명을 동시에 만족시키는 단일 UX는 거의 불가능하다. 회의에서 1차 페르소나를 한 명 고른다.
+  </div>
+
+  <h3>4-1. 페르소나 3유형 비교</h3>
+  <table>
+    <thead>
+      <tr><th>구분</th><th>A. 헤비 팬</th><th>B. 라이트 팬</th><th>C. 입문자</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>관람 빈도</strong></td>
+        <td>월 3회+</td>
+        <td>분기 1~2회</td>
+        <td>연 1~2회 또는 0회</td>
+      </tr>
+      <tr>
+        <td><strong>행동 패턴</strong></td>
+        <td>좋아하는 밴드 10팀+ 보유. 인스타·트위터·디시 매일 모니터링. 스크린샷·캘린더 관리 직접</td>
+        <td>친구 따라가거나 "뭐 재밌는 거 없나" 검색. 특정 밴드 충성도 낮음</td>
+        <td>인디 씬에 호기심. 어디서 시작할지 모름. "홍대 가면 뭐 봐?"</td>
+      </tr>
+      <tr>
+        <td><strong>진짜 페인포인트</strong></td>
+        <td>티켓 오픈 놓침. 좋아할만한 신인 밴드 발견 어려움</td>
+        <td>"오늘/주말 뭐 볼만한 거 있지?"가 안 풀림</td>
+        <td>신뢰할 수 있는 가이드 부재</td>
+      </tr>
+      <tr>
+        <td><strong>필요한 제품</strong></td>
+        <td>알림 + 유사 아티스트 추천</td>
+        <td>캘린더 + 큐레이션 + 친구 시그널</td>
+        <td>에디토리얼 + 입문 가이드 + 추천</td>
+      </tr>
+      <tr>
+        <td><strong>리텐션 강도</strong></td>
+        <td><span class="stars">★★★</span> 매주 앱 열 이유 있음</td>
+        <td><span class="stars">★</span> 분기 1회는 앱 설치 안 함</td>
+        <td><span class="stars">★</span> 일회성 이탈 위험</td>
+      </tr>
+      <tr>
+        <td><strong>마케팅 비용</strong></td>
+        <td>낮음 (커뮤니티 입소문)</td>
+        <td>중 (검색 광고·SEO)</td>
+        <td>높음 (브랜드 인지 필요)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>4-2. 권장 1차 페르소나 — <span class="highlight">A. 헤비 팬</span></h3>
+  <div class="callout good">
+    <strong>한 줄</strong> "월 3회 이상 인디 공연을 직접 챙겨 보는 20~30대, 좋아하는 밴드 10팀+ 보유, 인스타 스토리·DM·디시·트위터를 매일 정보 채널로 쓰는 사람."
+  </div>
+
+  <h4>선정 근거</h4>
+  <ol>
+    <li><strong>시장 진입 비용이 가장 낮다.</strong> 이미 자기 동기로 인디 공연을 찾고 있어 가치 제안이 짧은 한 문장으로 끝난다 ("티켓 놓침 / 스크린샷 헬"). 마케팅 비용 거의 0.</li>
+    <li><strong>데이터 부트스트랩이 가능하다.</strong> 헤비 팬이 "내가 좋아하는 밴드" 50개를 등록해주면, 그것 자체가 인기 아티스트 시그널 · 신인 추천 데이터 · 공연 우선순위가 된다. 라이트 팬·입문자는 이 데이터 위에서 후행으로 만족시킬 수 있다.</li>
+    <li><strong>리텐션이 가장 강하다.</strong> 헤비 팬은 매주 앱을 열 이유가 있다. 라이트 팬은 분기 1회 열려고 앱을 설치하지 않는다.</li>
+    <li><strong>NPS 전파력.</strong> 인디 씬 헤비 팬은 좁고 끈끈한 커뮤니티. 트위터·디시·커뮤니티에서 입소문 폭발력이 크다.</li>
+    <li><strong>확장 방향이 자연스럽다.</strong> 헤비 팬용 큐레이션·데이터가 쌓이면 "Top 10 이번 주 공연" 같은 라이트 팬용 진입점을 만들기 쉽다. <em>반대 방향(라이트→헤비)은 불가능.</em></li>
+  </ol>
+
+  <h4>위험 / 반론</h4>
+  <ul>
+    <li><strong>TAM(잠재 시장)이 작다.</strong> 월 3회+ 인디 헤비 팬은 추정 수만 명 단위. 단독 사업으로 한계 — 확장 시나리오 필수.</li>
+    <li><strong>헤비 팬은 이미 자기 방법이 있다.</strong> 인스타·메모·캘린더로 직접 관리. 대체할 만큼의 가치를 줘야 함 (≒ 통합 알림 + 추천이 핵심).</li>
+    <li><strong>"이 앱 없어도 공연은 본다"</strong> — 가치는 편의성 + 발견 보너스. 절대 의존은 아님.</li>
+  </ul>
+
+  <h3>4-3. 2차 타겟 (6~12개월 후 확장)</h3>
+  <ul>
+    <li><strong>B. 라이트 팬</strong> — 헤비 팬이 만든 데이터 기반 "이번 주 Top 10" UX로 유입</li>
+    <li><strong>C. 인디 입문자</strong> — Spotify·멜론 청취 이력 + 에디토리얼 큐레이션으로 유입</li>
+    <li><strong>지방 거주자</strong> — 수도권 방문 시 묶어보기, 지역 페스티벌 연계</li>
+  </ul>
+
+  <h3>4-4. 공급자 측 (별도 트랙)</h3>
+  <ul>
+    <li>라이브클럽 / 공연장 운영자 (홍대·망원·을지로 등)</li>
+    <li>인디 밴드·소속사·기획자 (음레협 산하 3,168팀)</li>
+    <li>페스티벌·라이브클럽데이 같은 기획 IP</li>
+  </ul>
+
+  <h3>4-5. MZ 행동 트렌드 (헤비 팬과의 정합성)</h3>
+  <ul>
+    <li><strong>"디토 소비"</strong> — 신뢰하는 큐레이터 따라 구매 (헤비 팬은 자신이 곧 큐레이터, 추종자를 만들고 싶어함)</li>
+    <li><strong>"가심비" / "로코노미"</strong> — 동네·취향 중심 소비 (홍대·망원·을지로 권역과 정합)</li>
+    <li><strong>N차 관람</strong> — 인디 팬덤은 충성도 매우 높음 (헤비 팬의 정의 자체)</li>
+  </ul>
+
+  <h3>4-6. 회의에서 결정할 것</h3>
+  <ol>
+    <li>1차 페르소나 = A. 헤비 팬으로 확정 / 아니면 B 또는 C 중 어떤 근거로?</li>
+    <li>"헤비 팬" 정의를 더 좁혀야 하나? (예: "월 3회+ AND 특정 장르(인디 락/일렉트로닉/재즈) 중심" 등)</li>
+    <li>헤비 팬을 어떻게 첫 100명 확보할 것인가? (커뮤니티 시드 / 라이브클럽 협업 / 인플루언서)</li>
+    <li>헤비 팬 단독으로 TAM 한계가 명확함 — 6개월 시점의 확장 시나리오를 지금 합의할지, 검증 후 결정할지?</li>
+  </ol>
+</section>
+
+<!-- ========== 5. 사회 문제 ========== -->
+<section id="s5">
+  <h2><span class="num">5</span>관련 사회 문제</h2>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>5-1. 인디 뮤지션 빈곤</h4>
+      <ul>
+        <li>음악 분야 예술인 평균 연소득 <strong>901만원</strong> (국민 평균의 41.3%)</li>
+        <li>76%가 월 100만원 미만, 절반이 부업</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>5-2. 라이브클럽 폐업 / 젠트리피케이션</h4>
+      <ul>
+        <li>홍대 라이브클럽 <strong>70%+ 폐업·휴업</strong> (2021)</li>
+        <li>브이홀·무브홀·살롱 노마드·퀸라이브홀 등</li>
+        <li>일반음식점 등록 → 정부 지원 배제</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>5-3. 발견 인프라 붕괴</h4>
+      <ul>
+        <li>네이버 OnStage 종료 (2023)</li>
+        <li>EBS 헬로루키 중단 (2023)</li>
+        <li>대중과의 접점 절대 부족</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>5-4. K-팝과 인디의 디커플링</h4>
+      <ul>
+        <li>K-팝 해외 매출 추정 1조 2,377억원</li>
+        <li>같은 시기 인디 라이브 관람률 27.5% → 15.4%</li>
+        <li>시장 회복은 대형 K-팝 콘서트만 흡수</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="quote">
+    "인디 뮤지션의 수는 계속 증가하나 공연장 감소, 인건비 상승으로 제작 활동이 어려워지고 있다. 생활비에 쫓겨 아르바이트하며 여가 시간에 음악을 생산하다 보니 음악 퀄리티가 낮아질 수밖에 없다." — 윤동환 음레협 회장
+  </div>
+
+  <h3>5-5. 청년·로컬 문화 활성화 트렌드</h3>
+  <ul>
+    <li>서대문구 "청년음악도시 신촌" 사업 — 정책 트렌드 시그널</li>
+    <li>"로컬 컬처 활성화" 정부 키워드 부상</li>
+  </ul>
+</section>
+
+<!-- ========== 6. 벤치마킹 ========== -->
+<section id="s6">
+  <h2><span class="num">6</span>유사 서비스 벤치마킹</h2>
+
+  <h3>국내</h3>
+  <table>
+    <thead><tr><th>서비스</th><th>플랫폼</th><th>핵심</th><th>한계</th><th>참고 포인트</th></tr></thead>
+    <tbody>
+      <tr><td><strong>인디스트릿</strong></td><td>웹 + iOS + Android</td><td>한국 인디씬 통합 DB(15년 누적), 다국어(한/영/일), 2026.3 자체 티켓 예매 오픈</td><td>1인 운영, 수기 입력 의존, 앱 ASO 약함</td><td>인디씬 정통성·신뢰 자산 / <a href="#indistreet-deep">아래 심화 분석</a></td></tr>
+      <tr><td><strong>아지토 (AZITO)</strong></td><td>iOS + Android</td><td>모바일 라이브홀 캘린더 + 아티스트 필터</td><td>신생, 커버리지 작음</td><td>모바일 네이티브 UX</td></tr>
+      <tr><td><strong>쇼팟 (Showpot)</strong></td><td>Android</td><td>내한공연 티켓팅 알림 (24h/6h/1h 전)</td><td>내한 한정</td><td>알림 SaaS 모델</td></tr>
+      <tr><td><strong>뉴켓 (Newket)</strong></td><td>iOS + Android</td><td>다수 예매처 통합 티켓 오픈 알림</td><td>대형 공연 위주</td><td>통합 알림이 한국 페인포인트</td></tr>
+      <tr><td><strong>라이브클럽데이</strong></td><td>오프라인 IP</td><td>멀티 베뉴 1패스</td><td>월 1회 한정</td><td>"공연장 패스" 상품화 가능</td></tr>
+      <tr><td><strong>CJ 튠업</strong></td><td>발굴 프로그램</td><td>인디 발굴·지원 (85팀 누적)</td><td>발굴 한정</td><td>콘텐츠 파트너십</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ===== 인디스트릿 심화 분석 ===== -->
+  <div id="indistreet-deep" class="card" style="margin-top: 20px; border-left: 4px solid var(--accent);">
+    <h4 style="margin-top: 0; font-size: 17px;">🔍 인디스트릿 심화 분석 — 가장 직접적인 경쟁/참고 사례</h4>
+
+    <p style="margin-top: 4px;">한국 인디 공연 정보 플랫폼 중 가장 오래 유지되고 있는 서비스. 후속 서비스의 직접 비교 대상이므로 별도 정리.</p>
+
+    <h4 style="color: var(--text); margin-top: 18px;">운영 주체 / 역사</h4>
+    <ul>
+      <li><strong>1세대 (2011~2018)</strong> — rainygirl(이준행) 단독 운영. 7년간 <strong>뮤지션 6,100팀, 공연장 900곳, 공연 16,800건</strong> 누적. 라즈베리파이 기반 크롤러로 공연장 카페 글 수집. 운영자 본업 사정으로 2018년 종료.</li>
+      <li><strong>데이터 공개 (2021.02)</strong> — 1세대 데이터셋이 <strong>CC BY 4.0</strong> 라이선스로 GitHub(rainygirl/indistreet-data)에 공개. 후속 서비스도 합법적으로 활용 가능.</li>
+      <li><strong>2세대 (2021.02~)</strong> — <strong>로토(Roto, @winterwolf0412)</strong>가 indistreet.com을 재구축. 본업은 웹 프론트엔드 엔지니어(ODK Media), 부업으로 펑크밴드 Idiots 베이시스트. 단독 운영(1인 사이드 프로젝트).</li>
+    </ul>
+
+    <h4 style="color: var(--text); margin-top: 18px;">모바일 앱 — iOS / Android</h4>
+    <div class="callout good" style="margin: 8px 0;">
+      <strong>결론</strong> iOS와 Android 모두에 출시되어 있다. 단, <strong>스토어 검색 노출이 매우 약해</strong> 사용자가 직접 DM으로 링크 요청해야 할 정도(@indistreet.app Instagram bio 명시).
+    </div>
+    <ul>
+      <li><strong>출시일</strong> — 2021년 9월(추석 연휴 작업) 추정 (로토 본인 2021 회고 블로그)</li>
+      <li><strong>기술 스택</strong> — React Native + Expo (OTA 업데이트), 백엔드는 Next.js + Strapi(헤드리스 CMS) + GraphQL + Apollo</li>
+      <li><strong>iOS</strong> — 출시 확인됨 (운영자 회고에 "iOS App Store $99 등록비 지불" 명시). 정확한 App Store URL/Apple ID는 검색에 노출되지 않아 미확정 → <em>스토어에서 직접 "인디스트릿" / "Indistreet" 검색 필요</em></li>
+      <li><strong>Android</strong> — Google Play 출시 확인. 단, 동명 검색 시 인도 Namebing Solutions의 "Indi Street" 이커머스 앱(<code>com.namebing.indistreet</code>)이 잡히므로 <strong>혼동 주의</strong>. 진짜 인디스트릿의 패키지명은 검색으로 확인 불가.</li>
+      <li><strong>앱 깊이</strong> — 로토 본인 표현으로 "Expo로 비교적 간단한 기능만". 즉 <strong>정보 조회 위주의 얇은 클라이언트</strong>. 푸시 알림·위시리스트·캘린더 연동·팔로우 등은 미구현 추정.</li>
+    </ul>
+
+    <h4 style="color: var(--text); margin-top: 18px;">웹 vs 앱 기능 비교</h4>
+    <table style="margin-top: 6px;">
+      <thead><tr><th>기능</th><th>웹 (indistreet.com)</th><th>앱 (iOS/Android)</th></tr></thead>
+      <tbody>
+        <tr><td>주간 공연 일정</td><td>있음 (/weekly)</td><td>반영</td></tr>
+        <tr><td>아티스트 / 공연장 페이지</td><td>있음 (slug URL)</td><td>동일 데이터</td></tr>
+        <tr><td>다국어 (한/영/일)</td><td>지원</td><td>확인 필요</td></tr>
+        <tr><td><strong>자체 티켓 예매</strong></td><td><strong>2026.3.31 오픈</strong></td><td>앱 통합 여부 미확인</td></tr>
+        <tr><td>회원가입 / 로그인</td><td>있음</td><td>확인 필요</td></tr>
+        <tr><td>푸시 알림</td><td>—</td><td>미구현 추정</td></tr>
+        <tr><td>위시리스트 / 팔로우</td><td>명시 자료 없음</td><td>미구현 추정</td></tr>
+        <tr><td>지도 기반 검색</td><td>미확인</td><td>—</td></tr>
+        <tr><td>후원</td><td>/donation (카카오페이 QR)</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h4 style="color: var(--text); margin-top: 18px;">데이터 수집 방식</h4>
+    <ul>
+      <li><strong>수기 입력이 기본</strong> — 운영자 본인 또는 아티스트/공연장 자발적 등록</li>
+      <li><strong>Chrome 확장 "인디스트릿 인스타그램 공연 스크래퍼"</strong> (패키지 ID <code>plkejdnniomgbgfpnbippppenjkgfkjb</code>, 발행자 indistreet.com) — 버전 2.0.0, 마지막 업데이트 2025.10.29, 사용자 9명. 인스타 게시글 → 인디스트릿 DB 자동 등록 보조 도구</li>
+      <li>로토 본인이 "수기 입력으로 놓치는 공연 꽤 많다"고 인정 — <span class="highlight">1세대 자동 크롤러 대비 2세대는 자동화가 약함</span></li>
+    </ul>
+
+    <h4 style="color: var(--text); margin-top: 18px;">최근 변화 (가장 중요)</h4>
+    <div class="callout">
+      <strong>2026.3.31 자체 티켓 예매 시스템 오픈</strong> — 인터파크/멜론/예스24 의존 없이 인디 공연 자체 결제 플로우를 구축하기 시작. 후속 서비스의 BM 설계에 직접적 영향.
+    </div>
+
+    <h4 style="color: var(--text); margin-top: 18px;">강점</h4>
+    <ul>
+      <li><strong>인디씬 내부 신뢰</strong> — 에고펑션에러 김민정, 일렉트릭뮤즈 김민규, Idiots 로토 등 씬 인사이더가 직접 관여한 정통성</li>
+      <li><strong>데이터 자산</strong> — 1세대 데이터 CC BY 4.0 공개 + 2세대 누적 데이터, 가장 충실한 한국 인디 DB</li>
+      <li><strong>다국어 지원</strong> — 해외 K-인디 팬 진입 가능성</li>
+      <li><strong>자체 티켓 예매(2026.3)</strong> — 단순 정보 어그리게이션을 넘어 결제까지</li>
+    </ul>
+
+    <h4 style="color: var(--text); margin-top: 18px;">한계 = 후속 서비스의 차별화 기회</h4>
+    <ol>
+      <li><strong>데이터 수집 자동화 부재</strong> — Chrome 확장(사용자 9명)이 유일한 보조 도구, 수기 입력 의존. → <strong>LLM 기반 포스터 OCR + 인스타 자동 수집 파이프라인</strong>으로 차별화 가능</li>
+      <li><strong>앱이 얇음</strong> — Expo로 빠르게 만든 정보 조회 클라이언트, 푸시·캘린더·위시리스트·팔로우 미구현. → <strong>앱 네이티브 경험(푸시·위치 기반·캘린더 연동)</strong>이 큰 차별화 축</li>
+      <li><strong>스토어 검색 노출 약함 (ASO 부재)</strong> — 사용자가 DM으로 링크 요청. → <strong>마케팅·온보딩·SEO/ASO 투자</strong>가 즉시 효과</li>
+      <li><strong>1인 운영 리스크</strong> — 1세대도 운영자 사정으로 종료된 전례. 팀 운영·자금 조달 시 안정성에서 우위</li>
+      <li><strong>수익 모델 미정</strong> — 후원·자체 티켓팅 초기 단계. 광고/Pro 구독/B2B SaaS 등 본격 BM 설계 시 추월 여지</li>
+      <li><strong>커뮤니티 기능 부재</strong> — 공식 디스코드/카톡방 없음, SNS는 일방향 공지 중심. → <strong>팬 커뮤니티·세트리스트·후기</strong>가 차별화 포인트</li>
+    </ol>
+
+    <h4 style="color: var(--text); margin-top: 18px;">출처</h4>
+    <ul class="source-list">
+      <li><a href="https://indistreet.com">indistreet.com (공식)</a></li>
+      <li><a href="https://blog.roto.codes/2021-retrospect/">로토 2021 회고 — 앱 출시 1차 자료</a></li>
+      <li><a href="https://blog.roto.codes/indistreet-with-slug">인디스트릿 기술 스택 글</a></li>
+      <li><a href="https://roto.dev">roto.dev (운영자)</a></li>
+      <li><a href="https://github.com/rainygirl/indistreet-data">1세대 데이터셋 (CC BY 4.0)</a></li>
+      <li><a href="https://www.instagram.com/indistreet.app/">@indistreet.app (앱 전용 IG)</a></li>
+      <li><a href="https://chromewebstore.google.com/detail/plkejdnniomgbgfpnbippppenjkgfkjb">Chrome 확장 스크래퍼</a></li>
+      <li><a href="https://news.mt.co.kr/mtview.php?no=2013082913494985130">머니투데이 2013 (1세대 보도)</a></li>
+    </ul>
+
+    <div class="callout warn" style="margin-top: 14px;">
+      <strong>확인 필요 항목</strong>
+      <ul style="margin: 6px 0 0;">
+        <li>iOS App Store URL / Apple ID — 스토어 앱에서 직접 검색 필요</li>
+        <li>Android Play Store 패키지명 — Namebing Solutions 동명 앱과 구분 필요</li>
+        <li>앱 평점·리뷰 수·다운로드 추정</li>
+        <li>2026.3 자체 티켓 예매가 앱에도 통합되었는지</li>
+        <li>운영자 사업자 등록 정보(자체 결제 운영 시 필수)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>해외</h3>
+  <table>
+    <thead><tr><th>서비스</th><th>핵심 가치</th><th>BM</th><th>적용성</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Bandsintown</strong></td><td>100M+ 사용자, 추천 60%가 미지의 아티스트, Spotify 통합</td><td>광고 + Pro 구독 + 티켓 커미션</td><td><span class="stars">★★★</span></td></tr>
+      <tr><td><strong>Songkick</strong></td><td>글로벌 알림 표준이었으나 2025.11 Suno에 인수</td><td>외부 셀러 커미션</td><td>한국 진입 공백 ↑</td></tr>
+      <tr><td><strong>Resident Advisor</strong></td><td>일렉트로닉 버티컬 1위, RA Picks 에디토리얼</td><td>자체 티켓팅 + 프리미엄 + 광고</td><td><span class="stars">★★★</span></td></tr>
+      <tr><td><strong>Dice.fm</strong></td><td>큐레이션 + 반-암표 + 정찰제, 추천이 매출 40%+</td><td>부킹 피 + 부가상품</td><td><span class="stars">★★★</span></td></tr>
+      <tr><td><strong>Eventbrite</strong></td><td>셀프 등록 마켓플레이스</td><td>수수료 + Ads</td><td><span class="stars">★★</span></td></tr>
+      <tr><td><strong>LiveFans (일본)</strong></td><td>세트리스트 DB + 라이브 리뷰 커뮤니티</td><td>광고</td><td><span class="stars">★★</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>시장 공백 = 기회</strong>
+    <ul style="margin: 6px 0 0;">
+      <li>본격적인 모바일 인디 디스커버리 — 인디스트릿 앱은 정보 조회 위주의 얇은 클라이언트, 아지토는 신생·소규모</li>
+      <li>인디 공연용 푸시 알림 + 캘린더 + 위시리스트 (인디스트릿 앱에 미구현)</li>
+      <li>인디 공연 정보의 LLM 기반 자동 수집 (포스터 OCR · 인스타 캡션 파싱) — 인디스트릿도 수기 입력에 의존</li>
+      <li>세트리스트·후기 DB (LiveFans 모델, 한국엔 사실상 부재)</li>
+      <li>에디토리얼 큐레이션 + 자체 티켓팅 (RA·Dice 모델)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== 7. 정책 ========== -->
+<section id="s7">
+  <h2><span class="num">7</span>관련 정책 및 정부지원</h2>
+
+  <h3>즉시 활용 가능한 데이터·인프라</h3>
+  <ul>
+    <li><strong>KOPIS OpenAPI</strong> (무료 인증키, kopis.or.kr) — 공연정보·예매통계·시간대별 추이</li>
+    <li><strong>공공데이터포털</strong> KOPIS 데이터셋, <strong>문화 빅데이터 포털</strong> CSV</li>
+    <li><strong>제5회 KOPIS 빅데이터 공모전</strong> (예술경영지원센터, 2025)</li>
+  </ul>
+
+  <h3>인디 뮤지션 직접 지원 (콘텐츠 파트너십 후보)</h3>
+  <table>
+    <thead><tr><th>사업</th><th>주관</th><th>규모</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>KOCCA 뮤즈온 (MUSE ON)</td><td>KOCCA</td><td>팀당 최대 2,000만원</td><td>신인 뮤지션 발굴</td></tr>
+      <tr><td>음악IP 활용 콘서트 기획 지원</td><td>KOCCA</td><td>10팀 내외</td><td>콘서트 직접 지원</td></tr>
+      <tr><td>CJ 튠업 27기</td><td>CJ문화재단 (민간)</td><td>최대 2,500만원</td><td>누적 85팀</td></tr>
+      <tr><td>경기콘진 인디스땅스</td><td>경기콘진</td><td>총 상금 2,500만원</td><td>오디션 + 페스티벌</td></tr>
+    </tbody>
+  </table>
+
+  <h3>라이브클럽·공연장 지원</h3>
+  <ul>
+    <li><strong>카카오창작재단 × 라이브클럽데이</strong> — 회당 평균 987명, 출연 135팀 (2025). 민간 후원이 주도.</li>
+    <li><strong>ARKO 대관료 지원</strong> — 2025년 385건 약 10억원</li>
+  </ul>
+
+  <h3>2026 스타트업 자금 환경</h3>
+  <ul>
+    <li><strong>모태펀드 콘텐츠 정책펀드</strong> — 출자 4,390억원 (역대 최대), 총 6,500억원 자펀드 결성</li>
+    <li><strong>K-스타트업 2026</strong> 콘텐츠 부문 (상금 최대 5억원)</li>
+    <li><strong>TIPS</strong> — 음악 플랫폼·팬덤 분석 스타트업 매칭 가능</li>
+    <li>민간 인센티브: 우선 손실충당 15→20%, 콜옵션 30→40%</li>
+  </ul>
+
+  <div class="callout warn">
+    <strong>⚠️ 규제 리스크</strong> 공연법 개정 시행 (2025.4.23) — 객석 <strong>50석 이상</strong> 라이브클럽은 공연장 등록 의무. 재해대처계획 매년 12월 31일 신고, 공연 전 1시간 안전교육 의무. 라이브클럽 BM 설계 시 핵심 변수.
+  </div>
+</section>
+
+<!-- ========== 8. 종합 권고 ========== -->
+<section id="s8">
+  <h2><span class="num">8</span>종합 권고 — 회의에서 결정할 것</h2>
+
+  <ol>
+    <li><strong>핵심 가치 한 줄 합의</strong> — 발견 / 알림 / 큐레이션 중 어디에 무게를 둘 것인가</li>
+    <li><strong>MVP 범위 합의</strong> — 지역(홍대 한정?) × 장르(인디 락? 일렉트로닉 포함?) × 시간 범위</li>
+    <li><strong>데이터 소스 우선순위</strong> — 공연장 파트너십 / UGC / 인스타 API / 스크래핑(법적 리스크) 중 선택</li>
+    <li><strong>BM 우선순위</strong> — 예매 어필리에이트 / 자체 티켓팅(Dice 모델) / 광고 / B2B 공급자 SaaS</li>
+    <li><strong>차별화 한 가지만</strong> — RA식 에디토리얼 / Dice식 정찰제 티켓팅 / LiveFans식 세트리스트 DB / 한국형 알림 통합</li>
+  </ol>
+
+  <div class="callout good">
+    <strong>가설</strong> 한국 시장에서 가장 적합도 높은 조합은 <strong>"모바일 캘린더 + Spotify/멜론 연동 추천 + 인디스트릿식 인스타 자동 수집 + RA식 에디토리얼 큐레이션"</strong>. 자체 티켓팅은 Phase 2로 보류.
+  </div>
+</section>
+
+<!-- ========== 출처 ========== -->
+<section id="sources">
+  <h2>주요 출처</h2>
+
+  <h3>한국 — 정부·통계</h3>
+  <ul class="source-list">
+    <li><a href="https://kopis.or.kr/">KOPIS 공연예술통합전산망</a></li>
+    <li><a href="https://welcon.kocca.kr/ko/info/trend/1954580">KOCCA 2024 음악 이용자 조사</a></li>
+    <li><a href="https://www.mcst.go.kr/site/s_policy/dept/deptView.jsp?pSeq=2002&pDataCD=0417000000&pType=02">문체부 2024 예술인 실태조사</a></li>
+    <li><a href="https://www.mcst.go.kr/site/s_policy/dept/deptView.jsp?pSeq=2059&pDataCD=0417000000&pType=02">문체부 2024 국민문화예술활동조사</a></li>
+    <li><a href="https://www.kocca.kr/kocca/bbs/view/B0000137/2008437.do">KOCCA 뮤즈온 2025</a></li>
+    <li><a href="https://www.arko.or.kr/content/6123">2026 ARKO 문예진흥기금</a></li>
+    <li><a href="http://www.liak.or.kr/">한국음악레이블산업협회 (음레협)</a></li>
+  </ul>
+
+  <h3>한국 — 서비스</h3>
+  <ul class="source-list">
+    <li><a href="https://indistreet.com/en">인디스트릿</a></li>
+    <li><a href="https://www.indielive.kr/">INDIELIVE</a></li>
+    <li><a href="https://apps.apple.com/kr/app/id6572301349">아지토 (AZITO)</a></li>
+    <li><a href="https://play.google.com/store/apps/details?id=com.alreadyoccupiedseat.showpot">쇼팟</a></li>
+    <li><a href="https://apps.apple.com/kr/app/id6738327768">뉴켓</a></li>
+    <li><a href="https://www.cjazit.org/support/tune-up">CJ문화재단 튠업</a></li>
+    <li><a href="https://www.facebook.com/liveclubday/">라이브클럽데이</a></li>
+  </ul>
+
+  <h3>한국 — 사회 이슈 / 보도</h3>
+  <ul class="source-list">
+    <li><a href="https://www.nocutnews.co.kr/news/6108445">韓 인디 뮤지션 3168팀 (노컷뉴스)</a></li>
+    <li><a href="https://www.sedaily.com/NewsView/22KZR9MGYC">홍대 클럽 폐업 (서울경제)</a></li>
+    <li><a href="https://mbiz.heraldcorp.com/article/2552501">홍대 라이브 공연장 줄도산 (헤럴드)</a></li>
+    <li><a href="https://sports.khan.co.kr/article/202503070515003">음악 예술인 평균 연소득 901만원</a></li>
+    <li><a href="https://ppss.kr/archives/17171">인디음악 문제는 무엇인가 (ppss)</a></li>
+  </ul>
+
+  <h3>해외 서비스</h3>
+  <ul class="source-list">
+    <li><a href="https://en.wikipedia.org/wiki/Songkick">Songkick (위키)</a></li>
+    <li><a href="https://www.musicbusinessworldwide.com/suno-is-now-the-controller-of-songkick-user-data-and-is-hiring-a-gm-to-wire-it-into-its-ai-music-platform/">Suno acquires Songkick (MBW)</a></li>
+    <li><a href="https://www.artist.bandsintown.com/features">Bandsintown for Artists</a></li>
+    <li><a href="https://www.billboard.com/pro/bandsintown-100-million-registered-fans/">Bandsintown 100M 사용자 (Billboard)</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Resident_Advisor">Resident Advisor (위키)</a></li>
+    <li><a href="https://ra.co/guide/kr/seoul">RA Guide to Seoul</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Dice_(ticketing_company)">Dice (위키)</a></li>
+    <li><a href="https://techcrunch.com/2021/09/26/londons-dice-raises-122m-at-a-400m-valuation-for-its-intelligent-event-discovery-and-booking-platform/">Dice $122M Series C</a></li>
+    <li><a href="https://www.livefans.jp/">LiveFans (일본)</a></li>
+  </ul>
+
+  <h3>AI / 기술</h3>
+  <ul class="source-list">
+    <li><a href="https://cookbook.openai.com/examples/data_extraction_transformation">OpenAI Cookbook — Data Extraction</a></li>
+    <li><a href="https://www.ncloud.com/v2/product/aiService/ocr/?language=en-US">Naver CLOVA OCR</a></li>
+    <li><a href="https://arxiv.org/pdf/2105.09680">KLUE Korean Language Understanding</a></li>
+    <li><a href="https://www.music-tomorrow.com/blog/how-spotify-recommendation-system-works-complete-guide">Spotify Recommendation 2025</a></li>
+    <li><a href="https://tech.kakao.com/2020/04/29/kakaoarena-3rd-part1/">멜론 음악 추천 (Kakao Tech)</a></li>
+    <li><a href="https://arxiv.org/pdf/2311.00635">GATSY: Graph Attention Network for Artist Similarity</a></li>
+    <li><a href="https://arxiv.org/abs/2506.21931">ARAG: Agentic RAG for Personalized Recommendation</a></li>
+    <li><a href="https://www.braze.com/resources/articles/push-notifications-best-practices">Push Notifications Best Practices (Braze)</a></li>
+    <li><a href="https://sociavault.com/blog/instagram-scraping-legal-2025">Instagram Scraping Legal 2025</a></li>
+    <li><a href="https://elfsight.com/blog/instagram-graph-api-complete-developer-guide-for-2026/">Instagram Graph API Guide 2026</a></li>
+  </ul>
+</section>
+
+<footer>
+  소규모 공연 통합 플랫폼 회의 자료 · 2026-05-24
+</footer>
+
+</div>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'meeting-doc-edits-v1';
+  const body = document.body;
+  const btnEdit = document.getElementById('btnToggleEdit');
+  const btnDownload = document.getElementById('btnDownload');
+  const btnReset = document.getElementById('btnReset');
+  const status = document.getElementById('saveStatus');
+  const toastEl = document.getElementById('toast');
+  const root = document.querySelector('.wrapper');
+
+  // 편집 가능 영역: wrapper 내부 콘텐츠 요소들. 토스트/툴바는 제외.
+  const EDITABLE_SELECTOR = '.wrapper h1, .wrapper h2, .wrapper h3, .wrapper h4, .wrapper p, .wrapper li, .wrapper td, .wrapper th, .wrapper .quote, .wrapper .callout, .wrapper .kpi .num, .wrapper .kpi .label, .wrapper .meta, .wrapper footer';
+
+  function getEditableEls() {
+    return document.querySelectorAll(EDITABLE_SELECTOR);
+  }
+
+  function showToast(msg, ms = 1800) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toastEl.classList.remove('show'), ms);
+  }
+
+  function setStatus(text) {
+    status.textContent = text || '';
+  }
+
+  // localStorage에 wrapper 전체 innerHTML 저장
+  let saveTimer = null;
+  function scheduleSave() {
+    if (saveTimer) clearTimeout(saveTimer);
+    setStatus('저장 중...');
+    saveTimer = setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, root.innerHTML);
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2, '0');
+        const mm = String(now.getMinutes()).padStart(2, '0');
+        setStatus(`자동 저장됨 · ${hh}:${mm}`);
+      } catch (e) {
+        setStatus('저장 실패 (용량 초과?)');
+        console.error(e);
+      }
+    }, 600);
+  }
+
+  // 페이지 로드 시 저장된 편집 내용 복원
+  function restore() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        root.innerHTML = saved;
+        setStatus('저장된 편집 내용 복원됨');
+        setTimeout(() => {
+          if (status.textContent === '저장된 편집 내용 복원됨') setStatus('');
+        }, 2500);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function setEditable(on) {
+    getEditableEls().forEach(el => {
+      if (on) el.setAttribute('contenteditable', 'true');
+      else el.removeAttribute('contenteditable');
+    });
+    body.classList.toggle('edit-mode', on);
+    btnEdit.textContent = on ? '✓ 편집 완료' : '✏️ 편집 모드';
+    btnEdit.classList.toggle('primary', on);
+    if (on) showToast('편집 모드 ON — 문단을 클릭해 수정하세요');
+  }
+
+  // input 이벤트로 변경 감지 → 자동 저장
+  document.addEventListener('input', (e) => {
+    if (body.classList.contains('edit-mode')) {
+      scheduleSave();
+    }
+  });
+
+  // Cmd/Ctrl+S 로 즉시 다운로드
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+      e.preventDefault();
+      downloadHtml();
+    }
+  });
+
+  btnEdit.addEventListener('click', () => {
+    const isOn = body.classList.contains('edit-mode');
+    setEditable(!isOn);
+  });
+
+  function downloadHtml() {
+    // 편집 모드 해제 후 직렬화 (contenteditable 속성이 파일에 박히지 않도록)
+    const wasEdit = body.classList.contains('edit-mode');
+    if (wasEdit) setEditable(false);
+
+    const clone = document.documentElement.cloneNode(true);
+    // 툴바/토스트 제거
+    const toolbar = clone.querySelector('#editToolbar');
+    const toast = clone.querySelector('#toast');
+    if (toolbar) toolbar.remove();
+    if (toast) toast.remove();
+    // 잔여 contenteditable 속성 제거
+    clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const ts = new Date().toISOString().slice(0, 16).replace('T', '_').replace(':', '');
+    a.href = url;
+    a.download = `소규모공연플랫폼_회의자료_${ts}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    if (wasEdit) setEditable(true);
+    showToast('HTML 파일 다운로드됨');
+  }
+
+  btnDownload.addEventListener('click', downloadHtml);
+
+  btnReset.addEventListener('click', () => {
+    if (!confirm('저장된 편집 내용을 모두 지우고 페이지를 새로고침합니다.\n계속하시겠습니까?')) return;
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+  // 초기 복원
+  restore();
+})();
+</script>
+
+</body>
+</html>
